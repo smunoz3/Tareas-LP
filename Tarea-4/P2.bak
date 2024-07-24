@@ -1,0 +1,13 @@
+#lang scheme
+
+(define (cantidades_recursion base funciones)
+  (if (null? funciones)
+      '()
+      (cons ((car funciones) base) (cantidades_recursion base (cdr funciones)))))
+
+(define (cantidades_cola base funciones)
+  (define (cantidades_aux funciones result)
+    (if (null? funciones)
+        (reverse result)
+        (cantidades_aux (cdr funciones) (cons ((car funciones) base) result))))
+  (cantidades_aux funciones '()))
